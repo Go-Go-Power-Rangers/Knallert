@@ -11,4 +11,6 @@ jobs:
           ruby-version: 2.7
           bundler-cache: true
       - uses: actions/checkout@v2
+        with:
+          github-token: "${{secrets.KNALLERT_TOKEN}}"
       - run: ruby -r ./newfile.rb
