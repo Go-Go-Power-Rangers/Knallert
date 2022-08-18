@@ -12,7 +12,7 @@ accessToken = "bearer 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"
 ###
 #FÅ LATEST RELEASE
 query = " query {
-    repository(owner: \"Go-Go-Power-Rangers\", name: \"Nicuh\") {
+    repository(owner: \"Go-Go-Power-Rangers\", name: \"Knallert\") {
         latestRelease {
             name
             author
