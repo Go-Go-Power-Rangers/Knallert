@@ -7,7 +7,7 @@ require 'net/http'
 require 'json'
 require 'uri'
 
-accessToken = "bearer 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"
+accessToken = secrets.KNALLERT_TOKEN
 
 ###
 #FÅ LATEST RELEASE
