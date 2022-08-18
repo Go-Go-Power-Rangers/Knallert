@@ -7,7 +7,7 @@ require 'net/http'
 require 'json'
 require 'uri'
 
-accessToken = "bearer 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"
+accessToken = "bearer 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"
 
 ###
 #FÅ LATEST RELEASE
@@ -38,14 +38,15 @@ res = Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
 end
 puts(res.body)
 
-release = res.body
+json = JSON.parse(res.body)
+releaseNotes = json.dig('data', "repository", "latestRelease")
 
 accessToken = "qrwhyfib3ra0yqzvkf0tdfn7ns3p1e"
 
 query = " mutation {
     syncPost(
         externalId: \"fz5hdg1f\"
-        content: release
+        content: releaseNotes.dig('description')
         format: HTML
         editUrl: \"https://github.com/Go-Go-Power-Rangers/Nicuh/releases/tag/v1.0.0\"
         readUrl: \"https://github.com/Go-Go-Power-Rangers/Nicuh/releases/tag/v1.0.0\"
