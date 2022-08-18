@@ -40,7 +40,7 @@ puts(res.body)
 
 json = JSON.parse(res.body)
 release = json.dig('data', "repository", "latestRelease", "description")
-releaseNotes = json.generate(release)
+releaseNotes = JSON.generate(release)
 
 accessToken = "qrwhyfib3ra0yqzvkf0tdfn7ns3p1e"
 
