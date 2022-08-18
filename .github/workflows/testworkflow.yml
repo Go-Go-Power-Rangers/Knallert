@@ -1,1 +1,10 @@
+on:
+  release:
+    types: [published]
 
+jobs:
+  get-info:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v6
+      - run: ruby -r newfile.rb
