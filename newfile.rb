@@ -47,8 +47,7 @@ accessToken = "qrwhyfib3ra0yqzvkf0tdfn7ns3p1e"
 query = " mutation {
     syncPost(
         externalId: \"fz5hdg1f\"
-        content: #{releaseNotes} \+ 
-                    \"and the women and children too\"
+        content: #{releaseNotes}
         format: HTML
         editUrl: \"https://github.com/Go-Go-Power-Rangers/Nicuh/releases/tag/v1.0.0\"
         readUrl: \"https://github.com/Go-Go-Power-Rangers/Nicuh/releases/tag/v1.0.0\"
