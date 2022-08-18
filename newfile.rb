@@ -7,7 +7,7 @@ require 'net/http'
 require 'json'
 require 'uri'
 
-accessToken = secrets.KNALLERT_TOKEN
+accessToken = process.env
 
 ###
 #FÅ LATEST RELEASE
