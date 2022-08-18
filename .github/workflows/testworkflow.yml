@@ -6,6 +6,7 @@ jobs:
   get-info:
     runs-on: ubuntu-latest
     steps:
+      - uses: ruby/setup-ruby@v1
       - uses: actions/checkout@v2
       - uses: actions/github-script@v6
       - run: ruby -r ./newfile.rb
