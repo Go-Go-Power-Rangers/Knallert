@@ -7,7 +7,7 @@ require 'net/http'
 require 'json'
 require 'uri'
 
-accessToken = process.env
+accessToken = "bearer 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"
 
 ###
 #FÅ LATEST RELEASE
