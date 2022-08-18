@@ -49,8 +49,8 @@ query = " mutation {
         externalId: \"fz5hdg1f\"
         content: #{releaseNotes}
         format: HTML
-        editUrl: \"https://github.com/Go-Go-Power-Rangers/Nicuh/releases/tag/v1.0.0\"
-        readUrl: \"https://github.com/Go-Go-Power-Rangers/Nicuh/releases/tag/v1.0.0\"
+        editUrl: \"https://github.com/Go-Go-Power-Rangers/Knallert/releases/latest\"
+        readUrl: \"https://github.com/Go-Go-Power-Rangers/Knallert/releases/latest\"
     )
     {title, id}
 }"
