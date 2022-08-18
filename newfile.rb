@@ -45,7 +45,7 @@ accessToken = "qrwhyfib3ra0yqzvkf0tdfn7ns3p1e"
 query = " mutation {
     syncPost(
         externalId: \"fz5hdg1f\"
-        content: \"Test1, forbindelse d 18/08/22\ haha virker det?"
+        content: \"Test1, forbindelse d 18/08/22\ haha virker det?\"
         format: HTML
         editUrl: \"https://github.com/Go-Go-Power-Rangers/Nicuh/releases/tag/v1.0.0\"
         readUrl: \"https://github.com/Go-Go-Power-Rangers/Nicuh/releases/tag/v1.0.0\"
