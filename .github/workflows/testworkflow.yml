@@ -47,7 +47,6 @@ jobs:
               name: context.repo.repo,
             })
             console.log(result)
-            return result
           result-encoding: string
           run: echo "::set-output name result::$release_info"
 
