@@ -7,7 +7,7 @@ require 'net/http'
 require 'json'
 require 'uri'
 
-accessToken = "bearer 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"
+accessToken = "GITHUB TOKEN GOES HERE"
 
 ###
 #FÅ LATEST RELEASE
@@ -42,7 +42,7 @@ json = JSON.parse(res.body)
 release = json.dig('data', "repository", "latestRelease", "description")
 releaseNotes = JSON.generate(release)
 
-accessToken = "qrwhyfib3ra0yqzvkf0tdfn7ns3p1e"
+accessToken = "SLAB API KEY GOES HERE"
 
 query = " mutation {
     syncPost(
