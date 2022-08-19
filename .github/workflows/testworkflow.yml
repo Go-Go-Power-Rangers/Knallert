@@ -23,6 +23,7 @@ jobs:
     steps:
       - name: Find Latest Release
         uses: actions/github-script@v3
+        id: release_info
         
         with:
           script: |
@@ -45,11 +46,11 @@ jobs:
               owner: context.repo.owner,
               name: context.repo.repo,
             })
-            console.log(toJSON(result))
+            console.log(result)
             return result
           result-encoding: string
           id: release_info
-          run: echo "::set-output name result::$result"
+          run: echo "::set-output name result::$release_info"
 
   
   slab_post:
