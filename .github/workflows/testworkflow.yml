@@ -1,3 +1,4 @@
+
 name: Automation for release on slab v2
 
 on:
@@ -14,13 +15,15 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
-  latest-release:
+  latest_release:
+    outputs:
+      info: ${{ steps.release_info.result }}
     runs-on: ubuntu-latest
     
     steps:
       - name: Find Latest Release
         uses: actions/github-script@v3
-        id: release_info
+        
         with:
           script: |
             const query = `
@@ -42,7 +45,17 @@ jobs:
               owner: context.repo.owner,
               name: context.repo.repo,
             })
-            console.log(result)
-      
-      - name: slab-post
-        run: echo "${{ steps.release_info.outputs.result }}"
+            console.log(toJSON(result))
+            return result
+          result-encoding: string
+          id: release_info
+          run: echo "::set-output name result::$result"
+
+  
+  slab_post:
+    needs: latest_release
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Post to slab
+        run: echo "${{needs.latest_release.outputs.info}}"
