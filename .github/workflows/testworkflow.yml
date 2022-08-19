@@ -49,7 +49,6 @@ jobs:
             console.log(result)
             return result
           result-encoding: string
-          id: release_info
           run: echo "::set-output name result::$release_info"
 
   
