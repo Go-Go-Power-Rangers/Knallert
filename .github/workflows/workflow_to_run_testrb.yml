@@ -8,7 +8,9 @@ jobs:
     steps:
       - name: this workflow should call test.rb
         uses: Go-Go-Power-Rangers/test-action@main
-        id: test-script
+        id: integration-test
         with: 
-          test: "Hello there"
-          test2: "Yeet generel kenobi"
+          repo_name: context.repo.name
+          repo_owner: context.repo.owner
+          accesToken_slab: "${{ secrets.SLAB_TOKEN }}"
+          accesToken_github: "${{ secrets.GITHUB_TOKEN }}"
