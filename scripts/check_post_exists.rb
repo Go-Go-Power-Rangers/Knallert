@@ -4,6 +4,8 @@ require 'uri'
 require 'date'
 require_relative 'methods.rb'
 include CommonMethods
+require_relative 'slab.rb'
+include Slab
 
 accessToken = "0qv5njxx9b0172cwywbxk03ovfagmc"
 topicID= "2w941vt0"
@@ -17,8 +19,7 @@ topicID= "2w941vt0"
 ###
  
 currentDate = DateTime.now().strftime('%d-%m-%Y').to_s
-puts currentDate.gsub("T", " ").split(/ /)[0]
-
+puts currentDate
 
 query = " query {
     search (
@@ -42,6 +43,7 @@ query = " query {
 uri = URI("https://api.slab.com/v1/graphql")
 res = queryFunc(uri, accessToken, query)
 json_res = JSON.parse(res.body)
+
 #Dig out the different edges
 edges = json_res.dig("data","search","edges")
 posts = []
@@ -53,9 +55,10 @@ edges.each_with_index do |edge,i|
     posts.append(edge.dig("node","post"))
     #save important attributes
     post_id = posts[i].fetch("id")
+    post_title = posts[i].fetch("title") 
     topics = posts[i].fetch("topics")
     #check if topics exists
-    if(topics != nil)
+    if(topics != nil && post_title == currentDate)
         #check each topic whether it's the right one
         topics.each do |topic|
             id = topic.dig("id")
@@ -73,3 +76,15 @@ edges.each_with_index do |edge,i|
 end
 
 puts existing_post_ID
+repo_name = "Knallert"
+repo_owner = "Go-Go-Power-Rangers"
+accessToken_slab = "0qv5njxx9b0172cwywbxk03ovfagmc"
+accessToken_github = "bearer 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"
+
+if(existing_post_ID == nil)
+    res = create_post(accessToken_slab,accessToken_github, repo_name, repo_owner)
+    puts res
+else
+    res = update_post(accessToken_slab,accessToken_github, repo_name, repo_owner, existing_post_ID)
+    puts res
+end
