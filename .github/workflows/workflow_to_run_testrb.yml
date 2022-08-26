@@ -10,7 +10,7 @@ jobs:
         uses: Go-Go-Power-Rangers/test-action@main
         id: integration-test
         with: 
-          repo_name: context.repo.repo
-          repo_owner: context.repo.owner
+          repo_name: ${{ github.repository }}
+          repo_owner: ${{ github.repository_owner }}
           accessToken_slab: "${{ secrets.SLAB_TOKEN }}"
           accessToken_github: "bearer ${{ secrets.GITHUB_TOKEN }}"
