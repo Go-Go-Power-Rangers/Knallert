@@ -11,3 +11,4 @@ jobs:
         id: test-script
         with: 
           test: "Hello there"
+          test2: "Yeet generel kenobi"
