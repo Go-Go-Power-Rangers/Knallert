@@ -13,4 +13,4 @@ jobs:
           repo_name: context.repo.name
           repo_owner: context.repo.owner
           accessToken_slab: "${{ secrets.SLAB_TOKEN }}"
-          accessToken_github: "${{ secrets.GITHUB_TOKEN }}"
+          accessToken_github: "bearer ${{ secrets.GITHUB_TOKEN }}"
