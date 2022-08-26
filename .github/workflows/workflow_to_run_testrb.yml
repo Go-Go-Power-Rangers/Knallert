@@ -6,7 +6,7 @@ jobs:
   justajob:
     runs-on: ubuntu-latest
     steps:
-      - name: this workflow should call test.rb
+      - name: this workflow should call check_post_exists.rb and create post on slab
         uses: Go-Go-Power-Rangers/test-action@main
         id: integration-test
         with: 
