@@ -82,9 +82,9 @@ accessToken_slab = "0qv5njxx9b0172cwywbxk03ovfagmc"
 accessToken_github = "bearer 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"
 
 if(existing_post_ID == nil)
-    res = create_post(accessToken_slab,accessToken_github, repo_name, repo_owner)
+    res = create_post(accessToken_slab,accessToken_github, repo_name, repo_owner, currentDate)
     puts res
 else
-    res = update_post(accessToken_slab,accessToken_github, repo_name, repo_owner, existing_post_ID)
+    res = update_post(accessToken_slab,accessToken_github, repo_name, repo_owner, existing_post_ID, currentDate)
     puts res
 end

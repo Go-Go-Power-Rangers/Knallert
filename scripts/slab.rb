@@ -13,7 +13,7 @@ module Slab
     accessToken_github = "bearer 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"
     # parameters
     # accessToken_slab, accessToken_github, repo_name, repo_owner, external_id_post
-    def create_post(accessToken_slab, accessToken_github, repo_name, repo_owner)
+    def create_post(accessToken_slab, accessToken_github, repo_name, repo_owner, externalId)
         # --- REQUEST TO GITHUB ---
         
         query = " query {
@@ -40,7 +40,7 @@ module Slab
         latestRelease = release_hash.fetch("data").fetch("repository").fetch("latestRelease")
         title = Date.parse(latestRelease.fetch("publishedAt")).strftime("%d-%m-%Y")
         release_tag = latestRelease["tagName"]
-
+        
         # --- CALL METHOD(create_markdown_string) HERE ---
         markdown_string = create_markdown_string(latestRelease, repo_name, release_tag)
         puts("markdown_string: \n# #{title} #{markdown_string}")
@@ -50,7 +50,7 @@ module Slab
         
         query = " mutation {
             syncPost(
-                externalId: \"#{title}\"
+                externalId: \"#{externalId}\"
                 content: \"#{markdown_string}\"
                 format: MARKDOWN
                 editUrl: \"https://\"
@@ -79,7 +79,7 @@ module Slab
         return res
     end
 
-    def update_post(accessToken_slab, accessToken_github, repo_name, repo_owner, post_id)
+    def update_post(accessToken_slab, accessToken_github, repo_name, repo_owner, post_id, externalId)
         # This script should take a post content and insert it the same way as original in MARKDOWN format
         query = " query {
             post (id: \"#{post_id}\") {
@@ -124,7 +124,7 @@ module Slab
         # --- REQUEST TO UPDATE POST WITH NEW MARKDOWN STRING ---
         query = " mutation {
             syncPost(
-                externalId: \"#{post_title}\"
+                externalId: \"#{externalId}\"
                 content: \"#{markdown_string}\"
                 format: MARKDOWN
                 editUrl: \"https://\"
