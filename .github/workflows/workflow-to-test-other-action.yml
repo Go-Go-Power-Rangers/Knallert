@@ -15,6 +15,6 @@ jobs:
         with:
           bundler-cache: true
       - uses: Go-Go-Power-Rangers/test2-action@main
-        env:
+        with:
           test: 'a'
           test2: 'b'
