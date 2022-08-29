@@ -15,5 +15,7 @@ jobs:
           bundler-cache: true
       - uses: Go-Go-Power-Rangers/test2-action@main
         with:
-          test: 'a'
-          test2: 'b'
+          repo_name: ${{ github.event.repository.name }}
+          repo_owner: ${{ github.repository_owner }}
+          accessToken_slab: "${{ secrets.SLAB_TOKEN }}"
+          accessToken_github: "bearer ${{ secrets.GITHUB_TOKEN }}"
