@@ -7,10 +7,6 @@ jobs:
   test_with_parameters:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2.4.0
-        with:
-          repository: 'Go-Go-Power-Rangers/test2-action@main'
-          ref: 'main'
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
