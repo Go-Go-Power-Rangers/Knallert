@@ -1,0 +1,20 @@
+name: 'try without dockerfile'
+on:
+  release:
+    types: [published]
+
+jobs:
+  test_with_parameters:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.4.0
+        with:
+          repository: 'Go-Go-Power-Rangers/test2-action@main'
+          ref: 'main'
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - uses: Go-Go-Power-Rangers/test2-action@main
+        env:
+          test: 'a'
+          test2: 'b'
