@@ -1,4 +1,4 @@
-ame: 'try without dockerfile'
+name: 'try without dockerfile'
 on:
   release:
     types: [published]
