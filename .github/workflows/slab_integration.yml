@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: this workflow creates/updates a post on slab containing release information
-        uses: Go-Go-Power-Rangers/slab-action@v1.0.0
+        uses: Go-Go-Power-Rangers/slab-action@v1
         with: 
           repo_name: ${{ github.event.repository.name }}
           repo_owner: ${{ github.repository_owner }}
