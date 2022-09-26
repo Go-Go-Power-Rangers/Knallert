@@ -9,6 +9,9 @@ jobs:
     steps: 
       - run: |
           echo "edit on issue: $ISSUE"
-          echo "object: ${{ toJson(github) }}"
         env:
           ISSUE: ${{ github.event.issue.number }}
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            console.log("Hello there")
