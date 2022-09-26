@@ -14,5 +14,5 @@ jobs:
       - uses: actions/github-script@v6
         with:
           script: |
-            const tasks = (${{  github.event.body}}.match(/(- \[[ ]\].+)/g))
-            console.log("Hello there")
+            const tasks = ${{  github.event.body }}
+            console.log(tasks)
