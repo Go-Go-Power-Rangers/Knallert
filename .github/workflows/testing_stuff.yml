@@ -8,8 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
       - run: |
-          echo edit on issue: $ISSUE
-          echo event sender: ${{ github.event.sender }}
-          echo event changes: ${{ github.event.changes }}
+          cat << OBJECT
+          $ {{ toJson(github) }}
+          OBJECT
         env:
           ISSUE: ${{ github.event.issue.number }}
