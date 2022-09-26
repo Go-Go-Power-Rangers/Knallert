@@ -19,11 +19,11 @@ jobs:
             const sender = context.payload.sender.login
             const tasksBefore = context.payload.changes.body.from.match(/(- \[[x\s]\].+)/g)
             const tasksAfter = context.payload.issue.body.match(/(- \[[x\s]\].+)/g)
-            const taskStatus = ""
+
             for(let task of tasksBefore) {
               if (!tasksAfter.includes(task)) {
-                if(task.includes("[x]") ? console.log("completed") : console.log("incomplete")
-                console.log(`@${sender} marked the checklist item *${task.split("]")[1]}* as ${{ taskStatus }} TODO (timestamp)`)
+                let taskStatus = task.includes("[x]") ? "complete" : "incomplete"
+                console.log(`@${sender} marked the checklist item *${task.split("]")[1]}* as ${taskStatus} TODO (timestamp)`)
                 break
               }
             }
