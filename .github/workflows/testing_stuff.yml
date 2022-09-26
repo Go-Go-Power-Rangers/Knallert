@@ -22,7 +22,7 @@ jobs:
             
             for(let task of tasksBefore) {
               if (!tasksAfter.includes(task)) {
-                let taskStatus = if(task.includes("[x]")) ? "completed" : "incomplete";
+                var taskStatus = if(task.includes("[x]")) ? "completed" : "incomplete";
                 console.log(`@${sender} marked the checklist item *${task.split("]")[1]}* as ${{ taskStatus }} TODO (timestamp)`)
                 break
               }
