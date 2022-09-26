@@ -14,6 +14,6 @@ jobs:
       - uses: actions/github-script@v6
         with:
           script: |
-            console.log(context.payload.changes.body)
+            console.log(context.payload.changes.body.from)
             console.log(context.payload.issue.body)
             console.log("sender: " + context.payload.sender.login)
