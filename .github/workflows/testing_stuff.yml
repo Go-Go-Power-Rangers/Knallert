@@ -16,13 +16,13 @@ jobs:
           script: |
             console.log(context.payload.changes.body.from + "\n")
             console.log(context.payload.issue.body)
-            console.log("sender: " + context.payload.sender.login)
+            const sender = context.payload.sender.login
             const tasksBefore = context.payload.changes.body.from.match(/(- \[[x\s]\].+)/g)
             const tasksAfter = context.payload.issue.body.match(/(- \[[x\s]\].+)/g)
             
             for(let task of tasksBefore) {
               if (!tasksAfter.includes(task)) {
-                console.log("Changed task: " + task)
+                console.log(`@${sender} marked the checklist item ${task.split("]")[1]} as TODO (completed/icomplete) TODO (timestamp) )
                 return
               }
             }
