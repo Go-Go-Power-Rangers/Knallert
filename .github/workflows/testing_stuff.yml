@@ -19,7 +19,11 @@ jobs:
             console.log("sender: " + context.payload.sender.login)
             const tasksBefore = context.payload.changes.body.from.match(/(- \[[x\s]\].+)/g)
             const tasksAfter = context.payload.issue.body.match(/(- \[[x\s]\].+)/g)
+            
             for(let task of tasksBefore) {
-              console.log(tasksAfter.includes(task));
-              console.log(task)
+              if (!tasksAfter.includes(task)) {
+                console.log("Changed task: " + task)
+                return
+              }
             }
+            console.log("finish")
