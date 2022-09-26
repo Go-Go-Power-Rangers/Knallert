@@ -14,5 +14,5 @@ jobs:
       - uses: actions/github-script@v6
         with:
           script: |
-            console.log(context)
-            console.log(context.issue)
+            console.log(context.changes)
+            console.log(context.sender)
