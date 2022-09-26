@@ -19,6 +19,6 @@ jobs:
             console.log("sender: " + context.payload.sender.login)
             const tasksBefore = context.payload.changes.body.from.match(/(- \[[x\s]\].+)/g)
             const tasksAfter = context.payload.issue.body.match(/(- \[[x\s]\].+)/g)
-            for(let i = 0; i < tasksBefore.length; i++) {
-              console.log(tasksBefore[i]);
+            for(let task of tasksBefore) {
+              console.log(task);
             }
