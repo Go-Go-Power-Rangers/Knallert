@@ -17,4 +17,4 @@ jobs:
             console.log(context.payload.changes.body.from + "\n")
             console.log(context.payload.issue.body)
             console.log("sender: " + context.payload.sender.login)
-            console.log(context.payload.issue.body.match(/(- \[[ ]\].+)/g))
+            console.log(context.payload.issue.body.match(/-\s\[\s\]/g))
