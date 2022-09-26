@@ -9,5 +9,6 @@ jobs:
     steps: 
       - run: |
           echo edit on issue: $ISSUE
+          echo event details: ${{ github.event }}
         env:
           ISSUE: ${{ github.event.issue.number }}
