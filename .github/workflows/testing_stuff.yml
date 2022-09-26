@@ -9,6 +9,6 @@ jobs:
     steps: 
       - run: |
           echo "edit on issue: $ISSUE"
-          echo "sender: ${{ github.event.sender }}"
+          echo "object: ${{ toJson(github) }}"
         env:
           ISSUE: ${{ github.event.issue.number }}
