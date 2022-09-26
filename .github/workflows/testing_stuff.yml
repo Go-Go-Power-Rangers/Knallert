@@ -20,5 +20,6 @@ jobs:
             const tasksBefore = context.payload.changes.body.from.match(/(- \[[x\s]\].+)/g)
             const tasksAfter = context.payload.issue.body.match(/(- \[[x\s]\].+)/g)
             for(let task of tasksBefore) {
-              console.log(task);
+              console.log(tasksAfter.includes(task));
+              console.log(task)
             }
