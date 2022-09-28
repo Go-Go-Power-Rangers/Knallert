@@ -44,4 +44,4 @@ jobs:
             issue_number: issueNum, 
             owner: owner, 
             repo: repo, 
-            body: updatedTasks })
+            body: updatedTasks.toString() })
