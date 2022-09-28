@@ -21,7 +21,7 @@ jobs:
             const tasksAfter = context.payload.issue.body.match(/(- \[[x\s]\].+)/g)
             
             if(tasksBefore || tasksAfter){
-              return "Contains no tasks, or no task edited"
+              exit 1
             }
 
             for(let task of tasksAfter) {
