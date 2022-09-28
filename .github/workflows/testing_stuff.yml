@@ -39,8 +39,8 @@ jobs:
             }
             console.log(updatedTasks)
             
-            console.log("owner:" + github.repository_owner)
-            console.log("name: " + github.event.repository.name)
+            console.log("owner:" + context.payload.organization.login)
+            console.log("name: " + context.payload.repository.name)
             
 
             
