@@ -9,6 +9,7 @@ jobs:
     steps: 
       - uses: actions/github-script@v6
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             //console.log(context)
             
@@ -39,10 +40,5 @@ jobs:
             }
             console.log(updatedTasks)
             
-            console.log("owner:" + context.payload.organization.login)
-            console.log("name: " + context.payload.repository.name)
-            
-
-            
-    
+            console.log(toJson(github))
             
