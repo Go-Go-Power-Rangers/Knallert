@@ -17,15 +17,11 @@ jobs:
             const tasksBefore = context.payload.changes.body.from.match(/(- \[[x\s]\].+)/g);
             const tasksAfter = context.payload.issue.body.match(/(- \[[x\s]\].+)/g);
 
-            if(!tasksAfter){
-              console.log("No tasks list were found");
-              return;
-            }
+            if(!tasksAfter){ return; }
             
             const updatedTasks = [];
             for(let task of tasksAfter) {
               if (!tasksBefore) {
-                // TODO
                 // if the task list is created with checkboxes already marked as completed
                 task.includes("[x]") ? console.log("checked") : console.log("not checked");
                 continue;
@@ -35,8 +31,9 @@ jobs:
                 updatedTasks.push(`@${sender} marked the checklist item **${task.split("]")[1].trim()}** as ${taskStatus}`);
               }
             }
-            console.log("Updated tasks: " + updatedTasks);
-            if(updatedTasks.length == 0){ return; }
             
+            if(updatedTasks.length == 0){ return; }
+            console.log(updatedTasks.length)
+            console.log("Updated tasks: " + updatedTasks);
             const { repo: { owner, repo }  } = context;
             github.rest.issues.createComment({ issue_number: issueNum, owner, repo, body: updatedTasks.toString() });
