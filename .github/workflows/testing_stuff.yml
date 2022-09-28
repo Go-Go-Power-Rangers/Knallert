@@ -18,17 +18,17 @@ jobs:
 
             if(!tasksAfter){ return; }
             
-            var updatedTask = "";
+            const updatedTasks = [];
             for(let task of tasksAfter) {
               if (!tasksBefore) { 
                 continue;
               } else if(!tasksBefore.includes(task)) {
                 let taskStatus = task.includes("[x]") ? "complete" : "incomplete";
-                updatedTask = (`@${sender} marked the checklist item **${task.split("]")[1].trim()}** as ${taskStatus}`);
+                updatedTasks.push(`@${sender} marked the checklist item **${task.split("]")[1].trim()}** as ${taskStatus}`);
               }
             }
             
-            if(updatedTask.length == 0){ return; }
-            console.log("Updated task: " + updatedTask);
+            if(updatedTasks.length == 0){ return; }
+            console.log("Updated tasks: " + updatedTasks);
             const { repo: { owner, repo }  } = context;
-            github.rest.issues.createComment({ issue_number: issueNum, owner, repo, body: updatedTask });
+            github.rest.issues.createComment({ issue_number: issueNum, owner, repo, body: updatedTasks.join("\n") });
