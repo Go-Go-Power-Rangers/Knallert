@@ -12,7 +12,6 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const issueNum = context.payload.issue.number;
-            nodeId = context.payload.issue.node_id;
             const sender = context.payload.sender.login;
             const tasksBefore = context.payload.changes.body.from.match(/(- \[[x\s]\].+)/g);
             const tasksAfter = context.payload.issue.body.match(/(- \[[x\s]\].+)/g);
