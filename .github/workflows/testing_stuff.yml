@@ -3,8 +3,7 @@ on:
     types: [edited]
 
 jobs:
-  testing:
-    name: issue edited
+  issue_edited:
     runs-on: ubuntu-latest
     steps: 
       - uses: actions/github-script@v6
