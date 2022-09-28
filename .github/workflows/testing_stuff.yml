@@ -16,7 +16,7 @@ jobs:
             const sender = context.payload.sender.login
             const tasksBefore = context.payload.changes.body.from.match(/(- \[[x\s]\].+)/g)
             const tasksAfter = context.payload.issue.body.match(/(- \[[x\s]\].+)/g)
-            console.log(issuenumber + " " + nodeID)
+            console.log(issuenumber + " " + nodeId)
 
             if(!tasksAfter){
               console.log("No tasks list were found")
