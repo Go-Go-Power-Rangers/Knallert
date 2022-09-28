@@ -28,7 +28,7 @@ jobs:
             for(let task of tasksAfter) {
               if (!tasksBefore) {
                 // TODO
-                task.includes("[x]") ? console.log("checked") : console.log("not checked")
+                task.includes("[x]") ? updatedTasks.push(task) : console.log("not checked")
                 continue
                 
               } else if(!tasksBefore.includes(task)) {
