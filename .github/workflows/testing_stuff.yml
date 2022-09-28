@@ -40,5 +40,5 @@ jobs:
             }
             console.log(updatedTasks)
             
-            console.log(toJson(github))
+            console.log(JSON.parse(github))
             
