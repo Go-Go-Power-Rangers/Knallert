@@ -11,8 +11,6 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            //console.log(context)
-            
             const issueNum = context.payload.issue.number
             nodeId = context.payload.issue.node_id
             const sender = context.payload.sender.login
@@ -28,20 +26,20 @@ jobs:
             for(let task of tasksAfter) {
               if (!tasksBefore) {
                 // TODO
-                task.includes("[x]") ? updatedTasks.push(task) : console.log("not checked")
+                // if the task list is created with checkboxes already marked as completed
+                task.includes("[x]") ? console.log("checked") : console.log("not checked")
                 continue
                 
               } else if(!tasksBefore.includes(task)) {
-                let taskStatus = task.includes("[x]") ? "complete" : "incomplete"
-                // timestamp??
-                updatedTasks.push(`@${sender} marked the checklist item **${task.split("]")[1].trim()}** as ${taskStatus}`)
+                let taskStatus = task.includes("[x]") ? "complete" : "incomplete";
+                updatedTasks.push(`@${sender} marked the checklist item **${task.split("]")[1].trim()}** as ${taskStatus}`);
               }
             }
-            console.log(updatedTasks)
-            
+            console.log("Updated tasks: " + updatedTasks);
+            if(!updatedTasks){ return; }
             const { repo: { owner, repo }  } = context;
             github.rest.issues.createComment({ 
             issue_number: issueNum, 
             owner: owner, 
             repo: repo, 
-            body: updatedTasks.toString() })
+            body: updatedTasks.toString() });
