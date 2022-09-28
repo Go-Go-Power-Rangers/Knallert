@@ -9,6 +9,8 @@ jobs:
     steps: 
       - run: |
           echo "edit on issue: $ISSUE"
+          echo ${{ github }}
+          echo ${{ github.event }}
         env:
           ISSUE: ${{ github.event.issue.number }}
       - uses: actions/github-script@v6
