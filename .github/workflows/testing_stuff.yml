@@ -38,8 +38,8 @@ jobs:
               }
             }
             console.log(updatedTasks)
-            //const { repo: { owner, repo }  } = context;
-            //console.log(context.repo.owner + " " + context.repo.repo)
+            
+            const { repo: { owner, repo }  } = context;
             github.rest.issues.createComment({ 
             issue_number: issueNum, 
             owner: owner, 
