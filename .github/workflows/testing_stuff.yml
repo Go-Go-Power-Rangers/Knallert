@@ -19,7 +19,7 @@ jobs:
 
             if(!tasksAfter){ return; }
             
-            const updatedTask = "";
+            var updatedTask = "";
             for(let task of tasksAfter) {
               if (!tasksBefore) { 
                 continue;
