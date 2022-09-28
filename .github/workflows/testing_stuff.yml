@@ -19,22 +19,18 @@ jobs:
 
             if(!tasksAfter){ return; }
             
-            const updatedTasks = [];
+            const updatedTask = "";
             for(let task of tasksAfter) {
-              if (!tasksBefore) {
-                // if the task list is created with checkboxes already marked as completed
-                task.includes("[x]") ? console.log("checked") : console.log("not checked");
+              if (!tasksBefore) { 
                 continue;
-                
               } else if(!tasksBefore.includes(task)) {
                 let taskStatus = task.includes("[x]") ? "complete" : "incomplete";
-                updatedTasks.push(`@${sender} marked the checklist item **${task.split("]")[1].trim()}** as ${taskStatus}`);
-                updatedTasks.push(`@${sender} marked the checklist item **${task.split("]")[1].trim()}** as ${taskStatus}`);
+                updatedTask = (`@${sender} marked the checklist item **${task.split("]")[1].trim()}** as ${taskStatus}`);
               }
             }
             
-            if(updatedTasks.length == 0){ return; }
-            console.log(updatedTasks.length)
-            console.log("Updated tasks: " + updatedTasks);
+            if(updatedTask.length == 0){ return; }
+            console.log(updatedTask.length)
+            console.log("Updated task: " + updatedTask);
             const { repo: { owner, repo }  } = context;
-            github.rest.issues.createComment({ issue_number: issueNum, owner, repo, body: updatedTasks.toString() });
+            github.rest.issues.createComment({ issue_number: issueNum, owner, repo, body: updatedTask });
