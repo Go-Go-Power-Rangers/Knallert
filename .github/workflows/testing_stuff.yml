@@ -29,6 +29,7 @@ jobs:
               } else if(!tasksBefore.includes(task)) {
                 let taskStatus = task.includes("[x]") ? "complete" : "incomplete";
                 updatedTasks.push(`@${sender} marked the checklist item **${task.split("]")[1].trim()}** as ${taskStatus}`);
+                updatedTasks.push(`@${sender} marked the checklist item **${task.split("]")[1].trim()}** as ${taskStatus}`);
               }
             }
             
