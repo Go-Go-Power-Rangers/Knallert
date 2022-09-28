@@ -29,7 +29,7 @@ jobs:
             for(let task of tasksAfter) {
               if (!tasksBefore.includes(task) || !tasksBefore) {
                 let taskStatus = task.includes("[x]") ? "complete" : "incomplete"
-                updatedTasks.push(`@${sender} marked the checklist item *${task.split("] ")[1]}* as ${taskStatus} TODO (timestamp)`)
+                updatedTasks.push(`@${sender} marked the checklist item *${task.split("]")[1].strip()}* as ${taskStatus} TODO (timestamp)`)
                 
               }
             }
