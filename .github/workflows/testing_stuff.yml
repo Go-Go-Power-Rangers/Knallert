@@ -19,6 +19,10 @@ jobs:
             const sender = context.payload.sender.login
             const tasksBefore = context.payload.changes.body.from.match(/(- \[[x\s]\].+)/g)
             const tasksAfter = context.payload.issue.body.match(/(- \[[x\s]\].+)/g)
+            
+            if(tasksBefore || tasksAfter){
+              return "Contains no tasks, or no task edited"
+            }
 
             for(let task of tasksAfter) {
               if (!tasksBefore.includes(task)) {
