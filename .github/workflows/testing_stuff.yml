@@ -19,10 +19,10 @@ jobs:
             const sender = context.payload.sender.login
             const tasksBefore = context.payload.changes.body.from.match(/(- \[[x\s]\].+)/g)
             const tasksAfter = context.payload.issue.body.match(/(- \[[x\s]\].+)/g)
-            
+            console.log(tasksBefore + " " + tasksAfter)
             if(tasksBefore || tasksAfter){
               console.log("No tasks listwere found")
-              exit
+              return
             }
 
             for(let task of tasksAfter) {
