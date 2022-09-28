@@ -39,5 +39,5 @@ jobs:
             }
             console.log(updatedTasks)
             const { repo: { owner, repo }  } = context;
-            console.log(owner + " " + repo)
-            github.issues.createComment({ issue_number: issueNum, owner, repo, body: updatedTasks })
+            console.log(context.repo.owner + " " + context.repo.repo)
+            github.issues.createComment({ issue_number: issueNum, owner, repo, body: "lol" })
