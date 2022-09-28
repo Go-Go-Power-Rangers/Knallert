@@ -10,8 +10,8 @@ jobs:
       - uses: actions/github-script@v6
         with:
           script: |
-            console.log(context.payload.changes.body.from + "\n")
-            console.log(context.payload.issue.body)
+            console.log(context)
+            
             const sender = context.payload.sender.login
             const tasksBefore = context.payload.changes.body.from.match(/(- \[[x\s]\].+)/g)
             const tasksAfter = context.payload.issue.body.match(/(- \[[x\s]\].+)/g)
