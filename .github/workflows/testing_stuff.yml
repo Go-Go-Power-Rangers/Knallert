@@ -11,24 +11,24 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const issueNum = context.payload.issue.number
-            nodeId = context.payload.issue.node_id
-            const sender = context.payload.sender.login
-            const tasksBefore = context.payload.changes.body.from.match(/(- \[[x\s]\].+)/g)
-            const tasksAfter = context.payload.issue.body.match(/(- \[[x\s]\].+)/g)
+            const issueNum = context.payload.issue.number;
+            nodeId = context.payload.issue.node_id;
+            const sender = context.payload.sender.login;
+            const tasksBefore = context.payload.changes.body.from.match(/(- \[[x\s]\].+)/g);
+            const tasksAfter = context.payload.issue.body.match(/(- \[[x\s]\].+)/g);
 
             if(!tasksAfter){
-              console.log("No tasks list were found")
-              return
+              console.log("No tasks list were found");
+              return;
             }
             
-            const updatedTasks = []
+            const updatedTasks = [];
             for(let task of tasksAfter) {
               if (!tasksBefore) {
                 // TODO
                 // if the task list is created with checkboxes already marked as completed
-                task.includes("[x]") ? console.log("checked") : console.log("not checked")
-                continue
+                task.includes("[x]") ? console.log("checked") : console.log("not checked");
+                continue;
                 
               } else if(!tasksBefore.includes(task)) {
                 let taskStatus = task.includes("[x]") ? "complete" : "incomplete";
@@ -36,9 +36,7 @@ jobs:
               }
             }
             console.log("Updated tasks: " + updatedTasks);
-            if(updatedTasks.length == 0){ 
-              console.log("ok ok")
-              return; 
-            }
+            if(updatedTasks.length == 0){ return; }
+            
             const { repo: { owner, repo }  } = context;
             github.rest.issues.createComment({ issue_number: issueNum, owner, repo, body: updatedTasks.toString() });
