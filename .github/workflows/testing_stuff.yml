@@ -28,6 +28,7 @@ jobs:
             const updatedTasks = []
             for(let task of tasksAfter) {
               if (!tasksBefore) {
+                task.includes("[x]") ? console.log("checked") : console.log("not checked")
                 continue
                 
               } else if(!tasksBefore.includes(task)) {
