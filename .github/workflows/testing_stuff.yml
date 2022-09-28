@@ -36,7 +36,7 @@ jobs:
               }
             }
             console.log("Updated tasks: " + updatedTasks);
-            if(updatedTasks.length = 0){ 
+            if(updatedTasks.length == 0){ 
               console.log("ok ok")
               return; 
             }
