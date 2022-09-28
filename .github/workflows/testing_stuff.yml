@@ -36,10 +36,6 @@ jobs:
               }
             }
             console.log("Updated tasks: " + updatedTasks);
-            if(!updatedTasks){ return; }
+            if(!updatedTasks){ cosnole.log("ok ok ")return; }
             const { repo: { owner, repo }  } = context;
-            github.rest.issues.createComment({ 
-            issue_number: issueNum, 
-            owner: owner, 
-            repo: repo, 
-            body: updatedTasks.toString() });
+            github.rest.issues.createComment({ issue_number: issueNum, owner, repo, body: updatedTasks.toString() });
