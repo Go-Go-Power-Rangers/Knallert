@@ -11,11 +11,12 @@ jobs:
         with:
           script: |
             //console.log(context)
-            const issueNumber = context.payload.issue.number
-            console.log(issueNumber)
+            
+            const issueNumber, nodeId = context.payload.issue.number, context.payload.issue.node_id
             const sender = context.payload.sender.login
             const tasksBefore = context.payload.changes.body.from.match(/(- \[[x\s]\].+)/g)
             const tasksAfter = context.payload.issue.body.match(/(- \[[x\s]\].+)/g)
+            console.log(issuenumber + " " + nodeID)
 
             if(!tasksAfter){
               console.log("No tasks list were found")
@@ -25,11 +26,11 @@ jobs:
             const updatedTasks = []
             for(let task of tasksAfter) {
               if (!tasksBefore) {
+                // TODO
                 task.includes("[x]") ? console.log("checked") : console.log("not checked")
                 continue
                 
               } else if(!tasksBefore.includes(task)) {
-                console.log("includes")
                 let taskStatus = task.includes("[x]") ? "complete" : "incomplete"
                 // timestamp??
                 updatedTasks.push(`@${sender} marked the checklist item *${task.split("]")[1].trim()}* as ${taskStatus}`)
@@ -37,4 +38,5 @@ jobs:
             }
             console.log(updatedTasks)
             console.log("finish")
+            
             
