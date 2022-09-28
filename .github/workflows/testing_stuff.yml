@@ -28,7 +28,7 @@ jobs:
             const updatedTasks = []
             for(let task of tasksAfter) {
               if (!tasksBefore) {
-                console.log("not includes")
+                continue
                 
               } else if(!tasksBefore.includes(task)) {
                 console.log("includes")
