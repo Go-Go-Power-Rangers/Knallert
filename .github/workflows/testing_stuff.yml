@@ -24,7 +24,7 @@ jobs:
                 continue;
               } else if(!tasksBefore.includes(task)) {
                 let taskStatus = task.includes("[x]") ? "complete" : "incomplete";
-                updatedTasks.push(`@${sender} marked the checklist item **${task.substring(4).trim()}** as ${taskStatus}`);
+                updatedTasks.push(`@${sender} marked the checklist item **${task.substring(5).trim()}** as ${taskStatus}`);
               }
             }
             
