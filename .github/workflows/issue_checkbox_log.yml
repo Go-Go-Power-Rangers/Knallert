@@ -25,10 +25,12 @@ jobs:
             if(!afdeling || afdeling.length > 1) { return; }
             console.log(afdeling[0].substring(5).trim())
 
+            // TODO get correct file from chosen checkboxes (selskab + afdeling)
             // var filePath = `./internal-roles/${}.md
             var fs = require('fs')
             fs.readdirSync('./').forEach(file => {
-              console.log("includes? " + file.includes(afdeling))
+              console.log("includes? " + file.includes(afdeling.to))
+              console.log(file)
             });
             fs.readFile('./internal-roles/qp-support.md', (err, data) => {console.log(String.fromCharCode.apply(String, data))});
             
