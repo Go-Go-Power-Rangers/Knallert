@@ -1,0 +1,32 @@
+on:
+  issues:
+    types: [edited]
+
+jobs:
+  issue_edited:
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const issueNum = context.payload.issue.number;
+            const sender = context.payload.sender.login;
+            const tasksBefore = context.payload.changes.body.from.match(/(- \[[x\s]\].+)/g);
+            const tasksAfter = context.payload.issue.body.match(/(- \[[x\s]\].+)/g);
+            if(!tasksAfter){ return; }
+            
+            const updatedTasks = [];
+            for(let task of tasksAfter) {
+              if (!tasksBefore) { 
+                continue;
+              } else if(!tasksBefore.includes(task)) {
+                let taskStatus = task.includes("[x]") ? "complete" : "incomplete";
+                updatedTasks.push(`@${sender} marked the checklist item **${task.substring(5).trim()}** as ${taskStatus}`);
+              }
+            }
+            
+            if(updatedTasks.length == 0){ return; }
+            console.log("Updated tasks: " + updatedTasks);
+            const { repo: { owner, repo }  } = context;
+            github.rest.issues.createComment({ issue_number: issueNum, owner, repo, body: updatedTasks.join("\n") });
