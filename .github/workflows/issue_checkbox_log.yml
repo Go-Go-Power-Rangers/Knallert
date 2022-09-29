@@ -38,7 +38,7 @@ jobs:
             const sender = context.payload.sender.login;
             const tasksBefore = context.payload.changes.body.from.match(/(- \[[x\s]\].+)/g);
             console.log(tasksBefore)
-            console.log(cotnext.payload.changes.body)
+            console.log(context.payload.changes.body)
             const tasksAfter = context.payload.comment.body.match(/(- \[[x\s]\].+)/g);
             if(!tasksAfter) { return; }
             
