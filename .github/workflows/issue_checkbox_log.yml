@@ -32,13 +32,19 @@ jobs:
             console.log("Updated tasks: " + updatedTasks);
             const { repo: { owner, repo }  } = context;
             github.rest.issues.createComment({ issue_number: issueNum, owner, repo, body: updatedTasks.join("\n") });
-  issue_comment:
+  issue_comment_edited:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            console.log(context)
+  
+  event_info:
     runs-on: ubuntu-latest
     steps:
       - name: github
         run: echo '${{ toJSON(github) }}'
-      - name: job
-        run: echo '${{ toJSON(job) }}'
       - name: event name
         run: echo '${{ github.event_name }}'
     
