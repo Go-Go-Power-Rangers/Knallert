@@ -1,6 +1,8 @@
 on:
   issues:
     types: [edited]
+  issue_comment:
+    types: [edited]
 
 jobs:
   issue_edited:
@@ -37,4 +39,6 @@ jobs:
         run: echo '${{ toJSON(github) }}'
       - name: job
         run: echo '${{ toJSON(job) }}'
+      - name: event name
+        run: echo '${{ github.event_name }}'
     
