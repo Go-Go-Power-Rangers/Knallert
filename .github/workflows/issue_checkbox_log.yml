@@ -28,7 +28,7 @@ jobs:
             // TODO get correct file from chosen checkboxes (selskab + afdeling)
             // var filePath = `./internal-roles/${}.md
             var fs = require('fs')
-            fs.readdirSync('./').forEach(file => {
+            fs.readdirSync('./internal-roles/').forEach(file => {
               console.log("includes? " + file.includes(afdeling.to))
               console.log(file)
             });
