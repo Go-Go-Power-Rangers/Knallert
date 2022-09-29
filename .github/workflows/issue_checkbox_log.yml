@@ -8,9 +8,8 @@ jobs:
     steps: 
       - uses: actions/github-script@v6
         with:
-          
           script: |
-            console.log(github.toString())
+            console.log(context)
             const issueNum = context.payload.issue.number;
             const sender = context.payload.sender.login;
             const tasksBefore = context.payload.changes.body.from.match(/(- \[[x\s]\].+)/g);
@@ -31,3 +30,11 @@ jobs:
             console.log("Updated tasks: " + updatedTasks);
             const { repo: { owner, repo }  } = context;
             github.rest.issues.createComment({ issue_number: issueNum, owner, repo, body: updatedTasks.join("\n") });
+  issue_comment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: github
+        run: echo '${{ toJSON(github) }}'
+      - name: job
+        run: echo '${{ toJSON(job) }}'
+    
