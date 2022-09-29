@@ -14,8 +14,8 @@ jobs:
           script: |
             const issueNum = context.payload.issue.number;
             const tasks = context.payload.issue.body.match(/(- \[[x\s]\].+)/g);
-            if(tasks.length < 2) ? console.log("less than 2 selected") : console.log("2 selected")
-            
+            tasks.length < 2 ? console.log("less than 2 selected") : console.log("2 selected")
+            console.log(context)
 
   issue_comment_edited:
     if: github.event_name == 'issue_comment'
