@@ -18,7 +18,7 @@ jobs:
             tasks.length < 2 ? console.log("less than 2 selected") : console.log("2 selected");
             var fs = require('fs');
             fs.readdir('./', (err, files) => {
-              files.foreach(file => {
+              files.forEach(file => {
                 console.log(file)
               });
             });
