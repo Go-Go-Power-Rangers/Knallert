@@ -13,9 +13,13 @@ jobs:
         with:
           script: |
             const issueNum = context.payload.issue.number;
-            const tasks = context.payload.issue.body.match(/(- \[[x\s]\].+)/g);
+            const tasks = context.payload.issue.body.match(/(- \[[x]\].+)/g);
             tasks.length < 2 ? console.log("less than 2 selected") : console.log("2 selected")
-            console.log(context)
+            var fs = require('fs');
+            data = fs.readFile('./internal-roles/qp-support.md')
+            console.log(data)
+            
+
 
   issue_comment_edited:
     if: github.event_name == 'issue_comment'
