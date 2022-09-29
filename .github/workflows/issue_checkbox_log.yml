@@ -14,18 +14,20 @@ jobs:
         with:
           script: |
             const issueNum = context.payload.issue.number;
+            const issueBody = context.payload.issue.body;
+            const regEx = /(- \[[x]\].+)/g
             // get specific "selskab" checkboxes
+            var selskab = issueBody.substring(issueBody.search("### Selskab"), issueBody.search("### Afdeling"))
+            console.log(selskab.match(regEx))
 
             // get specific "afdeling" checkboxes
-            const tasks = context.payload.issue.body.match(/(- \[[x]\].+)/g);
+            const tasks = context.payload.issue.body.match(regEx);
+
+            // make sure tasks are checked and consist of both company and section/department
             if(!tasks) { return; }
+            console.log(tasks)
             tasks.length < 2 ? console.log("less than 2 selected") : console.log("2 selected");
-            var fs = require('fs');
-            fs.readdir('.', (err, files) => {
-              files.forEach(file => {
-                console.log(file)
-              });
-            });
+
             fs.readFile('./internal-roles/qp-support.md', (err, data) => {console.log(String.fromCharCode.apply(String, data))});
             
 
