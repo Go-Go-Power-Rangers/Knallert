@@ -1,13 +1,26 @@
 on:
   issues:
-    types: [edited]
+    types: edited
   issue_comment:
-    types: [edited]
+    types: edited
 
 jobs:
   issue_edited:
+    if: github.event_name == 'issues'
     runs-on: ubuntu-latest
-    steps: 
+    steps:
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            const issueNum = context.payload.issue.number;
+            const tasks = context.payload.issue.body.match(/(- \[[x\s]\].+)/g);
+            if(tasks.length < 2) ? console.log("less than 2 selected") : console.log("2 selected")
+            
+
+  issue_comment_edited:
+    if: github.event_name == 'issue_comment'
+    runs-on: ubuntu-latest
+    steps:
       - uses: actions/github-script@v6
         with:
           script: |
@@ -32,13 +45,6 @@ jobs:
             console.log("Updated tasks: " + updatedTasks);
             const { repo: { owner, repo }  } = context;
             github.rest.issues.createComment({ issue_number: issueNum, owner, repo, body: updatedTasks.join("\n") });
-  issue_comment_edited:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/github-script@v6
-        with:
-          script: |
-            console.log(context)
   
   event_info:
     runs-on: ubuntu-latest
