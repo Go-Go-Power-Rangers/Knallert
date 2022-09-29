@@ -29,8 +29,8 @@ jobs:
             // var filePath = `./internal-roles/${}.md
             var fs = require('fs')
             fs.readdirSync('./internal-roles/').forEach(file => {
-              console.log("includes? " + file.includes(afdeling.to))
-              console.log(file)
+              console.log("includes? " + file.includes(afdeling))
+              console.log(file + "|" + afdeling)
             });
             fs.readFile('./internal-roles/qp-support.md', (err, data) => {console.log(String.fromCharCode.apply(String, data))});
             
