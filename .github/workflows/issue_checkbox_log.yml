@@ -19,11 +19,11 @@ jobs:
 
             const selskab = issueBody.substring(issueBody.search('### Selskab'), issueBody.search('### Afdeling')).match(regEx)
             console.log(selskab)
-            !selskab || selskab.length > 1 ? return; : continue;
+            if(!selskab || selskab.length > 1) { return; }
 
             const afdeling = issueBody.substring(issueBody.search('### Afdeling'), issueBody.search('### Ansøger')).match(regEx)
             console.log(afdeling)
-            !afdeling || afdeling.length > 1 ? return; : continue;
+            if(!afdeling || afdeling.length > 1) { return; }
 
             var fs = require('fs')
             fs.readFile('./internal-roles/qp-support.md', (err, data) => {console.log(String.fromCharCode.apply(String, data))});
