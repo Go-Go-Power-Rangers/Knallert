@@ -10,6 +10,7 @@ jobs:
         with:
           
           script: |
+            console.log(github.toString())
             const issueNum = context.payload.issue.number;
             const sender = context.payload.sender.login;
             const tasksBefore = context.payload.changes.body.from.match(/(- \[[x\s]\].+)/g);
