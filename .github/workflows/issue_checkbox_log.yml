@@ -19,11 +19,11 @@ jobs:
 
             const selskab = issueBody.substring(issueBody.search('### Selskab'), issueBody.search('### Afdeling')).match(regEx)
             if(!selskab || selskab.length > 1) { return; }
-            console.log(selskab.substring(5).trim())
+            console.log(selskab[0].substring(5).trim())
 
             const afdeling = issueBody.substring(issueBody.search('### Afdeling'), issueBody.search('### Ansøger')).match(regEx)
             if(!afdeling || afdeling.length > 1) { return; }
-            console.log(afdeling.substring(5).trim())
+            console.log(afdeling[0].substring(5).trim())
 
             // var filePath = `./internal-roles/${}.md
             var fs = require('fs')
