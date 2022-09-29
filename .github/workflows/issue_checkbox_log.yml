@@ -22,9 +22,10 @@ jobs:
             if(!selskab || selskab.length > 1) { return; }
 
             const afdeling = issueBody.substring(issueBody.search('### Afdeling'), issueBody.search('### Ansøger')).match(regEx)
-            console.log(afdeling)
+            console.log(afdeling.match(/g))
             if(!afdeling || afdeling.length > 1) { return; }
 
+            var filePath = `./internal-roles/${}.md
             var fs = require('fs')
             fs.readFile('./internal-roles/qp-support.md', (err, data) => {console.log(String.fromCharCode.apply(String, data))});
             
