@@ -26,7 +26,7 @@ jobs:
                 console.log(file)
               });
             });
-            fs.readFile('./internal-roles/qp-support.md', (err, data) => {console.log(data)});
+            fs.readFile('./internal-roles/qp-support.md', (err, data) => {console.log(String.fromCharCode.apply(String, data))});
             
 
 
