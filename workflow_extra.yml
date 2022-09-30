@@ -1,0 +1,75 @@
+on:
+  issues:
+    types: edited
+  issue_comment:
+    types: edited
+
+jobs:
+  issue_edited:
+    if: github.event_name == 'issues'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            const issueNum = context.payload.issue.number;
+            const issueBody = context.payload.issue.body;
+            const regEx = /(- \[[x]\].+)/g
+
+            const selskab = issueBody.substring(issueBody.search('### Selskab'), issueBody.search('### Afdeling')).match(regEx)
+            if(!selskab || selskab.length > 1) { return; }
+            console.log(selskab[0].substring(5).trim())
+
+            const afdeling = issueBody.substring(issueBody.search('### Afdeling'), issueBody.search('### Ansøger')).match(regEx)
+            if(!afdeling || afdeling.length > 1) { return; }
+            adeling = afdeling[0].substring(5).trim()
+            console.log(afdeling)
+
+            // TODO get correct file from chosen checkboxes (selskab + afdeling)
+            // var filePath = `./internal-roles/${}.md
+            var fs = require('fs')
+            fs.readdirSync('./internal-roles/').forEach(file => {
+              console.log("includes? " + file.includes(afdeling))
+              console.log(file + "|" + afdeling)
+            });
+            fs.readFile('./internal-roles/qp-support.md', (err, data) => {console.log(String.fromCharCode.apply(String, data))});
+            
+
+
+  issue_comment_edited:
+    if: github.event_name == 'issue_comment'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            const issueNum = context.payload.issue.number;
+            const sender = context.payload.sender.login;
+            const tasksBefore = context.payload.changes.body.from.match(/(- \[[x\s]\].+)/g);
+            const tasksAfter = context.payload.comment.body.match(/(- \[[x\s]\].+)/g);
+            if(!tasksAfter) { return; }
+            
+            let updatedTasks = [];
+            for(let task of tasksAfter) {
+              if (!tasksBefore) { 
+                continue;
+              } else if(!tasksBefore.includes(task)) {
+                let taskStatus = task.includes("[x]") ? "complete" : "incomplete";
+                updatedTasks.push(`@${sender} marked the checklist item **${task.substring(5).trim()}** as ${taskStatus}`);
+              }
+            }
+            
+            if(updatedTasks.length == 0) { return; }
+            console.log("Updated tasks: " + updatedTasks);
+            const { repo: { owner, repo }  } = context;
+            github.rest.issues.createComment({ issue_number: issueNum, owner, repo, body: updatedTasks.join("\n") });
+  
+  event_info:
+    runs-on: ubuntu-latest
+    steps:
+      - name: github
+        run: echo '${{ toJSON(github) }}'
+      - name: event name
+        run: echo '${{ github.event_name }}'
+    
