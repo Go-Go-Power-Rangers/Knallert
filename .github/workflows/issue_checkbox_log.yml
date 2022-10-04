@@ -1,8 +1,6 @@
 on:
   issues:
     types: edited
-  issue_comment:
-    types: edited
 
 jobs:
    issue_edited:
